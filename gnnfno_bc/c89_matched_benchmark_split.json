@@ -1,0 +1,25 @@
+{
+  "protocol": "Historical C89S100 (big-room 90% cooling, 100% server, 401 frames) matched external-baseline benchmark",
+  "purpose": "A fresh comparison only. The historical c89s100 checkpoint is not part of this benchmark.",
+  "train_cases": [
+    "big_room__cooling-080pct__server-100pct__frames-201",
+    "small_room__cooling-040pct__server-100pct__frames-201",
+    "small_room__cooling-045pct__server-100pct__frames-201",
+    "small_room__cooling-050pct__server-100pct__frames-201",
+    "small_room__cooling-060pct__server-100pct__frames-201",
+    "small_room__cooling-065pct__server-100pct__frames-201",
+    "small_room__cooling-070pct__server-100pct__frames-201",
+    "small_room__cooling-075pct__server-100pct__frames-201",
+    "small_room__cooling-085pct__server-100pct__frames-201",
+    "small_room__cooling-090pct__server-100pct__frames-201",
+    "small_room__cooling-095pct__server-100pct__frames-201",
+    "small_room__cooling-100pct__server-000pct__frames-201",
+    "small_room__cooling-100pct__server-000pct__frames-401",
+    "small_room__cooling-100pct__server-100pct__frames-201"
+  ],
+  "valid_cases": [
+    "small_room__cooling-055pct__server-100pct__frames-201",
+    "small_room__cooling-080pct__server-100pct__frames-201"
+  ],
+  "test_cases": ["big_room__cooling-090pct__server-100pct__frames-401"]
+}

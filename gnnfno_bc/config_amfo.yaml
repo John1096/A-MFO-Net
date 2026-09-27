@@ -1,0 +1,97 @@
+# A-MFO-Net configuration. train_amfo.py pins the protocol and paths.
+model:
+  name: A-MFO-Net
+  implementation: train_gnn_fno_semibc.py
+
+arch:
+  state_dim: 5
+  boundary_feature_dim: 6
+  outlet_geometry_feature_dim: 0
+  latent_dim: 64
+  gnn:
+    activation: silu
+    layer_norm: false
+    residual: true
+    aggregation: mean
+    use_edge_features: true
+    use_attention: true
+    attention_mode: learned
+    attention_hidden_dim: 32
+    attention_temperature: 1.0
+    score_edge_mode: aligned
+    encoder:
+      hidden_dim: 64
+      processor_layers: 2
+      mlp_layers: 2
+    decoder:
+      hidden_dim: 64
+      processor_layers: 2
+      mlp_layers: 2
+  fno:
+    fno_modes: 12
+    fno_layers: 4
+    padding: 8
+    decoder_layers: 1
+    decoder_layer_size: 64
+
+scheduler:
+  initial_lr: 1.0e-3
+  weight_decay: 1.0e-6
+  decay_rate: 0.5
+  decay_epochs: 50
+
+training:
+  seed: 42
+  batch_size: 2
+  num_workers: 4
+  max_epochs: 100
+  norm_stat_samples: 50
+  rec_results_freq: 20
+  checkpoint_dir: ./runs/checkpoints
+  use_amp: false
+  rollout_steps: 3
+  teacher_forcing: false
+  use_multistep_loss: true
+  train_interior_only: true
+  interior_class_index: 1
+  semi_teacher_force_boundary: true
+
+validation:
+  validation_epochs: 20
+  rollout_steps: 1
+  batch_size: 1
+
+data:
+  data_root: ./data
+  val_ratio: 0.2
+  max_cases: -1
+  max_train_samples: 200
+  max_valid_samples: 20
+  k_neighbors: 8
+  grid_resolution: 32
+  compute_grid_sdf: true
+  train_query_subsample: 2048
+  use_boundary_features: true
+  outlet_geometry_features: false
+  acu_outlet_class_index: 3
+  boundary_onehot_key: boundary_types
+  boundary_class_key: boundary_type
+  velocity_keys: [Velocity(m/s), velocity, Velocity, U]
+  pressure_keys: [Pressure(Pa), pressure, Pressure, p]
+  temperature_keys: [Temperature(C), temperature, Temperature, T]
+
+split:
+  train_cases: 14
+  valid_cases: 2
+  test_cases: 1
+  explicit_manifest: c89_matched_benchmark_split.json
+
+output:
+  root_dir: ./runs
+  run_name: amfo_submitted_seed42
+
+test:
+  rollout_after_training: true
+  rollout_steps: 400
+  semi_teacher_force_boundary: true
+  metric_scope: all
