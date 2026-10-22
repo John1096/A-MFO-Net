@@ -1,10 +1,12 @@
-# A-MFO-Net source release draft
+# A-MFO-Net
+
+**Publication status:** Accepted for SIGGRAPH Asia 2026 Technical Communications.
+The conference takes place in December 2026; the formal ACM citation is forthcoming.
 
 This repository contains the A-MFO-Net implementation for three-dimensional
-server-room flow, pressure, and temperature forecasting. It is a local release
-draft. Selected paper figures and CSV metrics from the completed, capped
-three-seed campaign are included. The CFD dataset, trained weights, and
-prediction trajectories are not included.
+server-room flow, pressure, and temperature forecasting. Selected paper figures
+and CSV metrics from the completed, capped three-seed campaign are included.
+The CFD dataset, trained weights, and prediction trajectories are not included.
 
 ## Model and protocol
 
